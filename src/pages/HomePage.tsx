@@ -16,8 +16,8 @@ export default function HomePage() {
         {
             id: crypto.randomUUID(),
             count: 1,
-            quote: "This is a fortune text",
-            author: "Someone"
+            quote: "I’ll leave tomorrow’s problems to tomorrow’s me.",
+            author: "Saitama"
         }
     ]);
     const [currentFortune, setCurrentFortune] = useState<Fortune | null>(null);
@@ -35,7 +35,7 @@ export default function HomePage() {
         <>
             <Header />
             <Opening fortunes={fortunes} setFortunes={setFortunes} sortFortunes={sortFortunes} currentFortune={currentFortune} setCurrentFortune={setCurrentFortune} />
-            <History fortunes={fortunes} />
+            <History fortunes={fortunes} setCurrentFortune={setCurrentFortune} />
         </>
     )
 }
