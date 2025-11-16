@@ -1,0 +1,12 @@
+.history__card:hover .history__card__text {
+    color: black;
+}
+
+.history__card:hover .history__card__count {
+    background-color: var(--color-darkGreen);
+}
+
+.history__card__text,
+.history__card__count {
+    transition: ease-in-out 0.2s;
+}

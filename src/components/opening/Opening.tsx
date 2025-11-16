@@ -1,0 +1,112 @@
+import { useRef } from "react";
+import "./Opening.css";
+import { quotes } from "../../quotes";
+
+import Button from "../button/Button";
+
+import cookieImg from "/images/fortune_cookie_glow.png";
+import cookieLeftImg from "/images/fortune_cookie_left.png";
+import cookieRightImg from "/images/fortune_cookie_right.png";
+
+type Fortune = {
+    id: string;
+    count: number;
+    quote: string;
+    author: string;
+}
+
+type OpeningProps = {
+    fortunes: Fortune[];
+    setFortunes: React.Dispatch<React.SetStateAction<Fortune[]>>;
+    currentFortune: Fortune | null;
+    setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
+    sortFortunes: () => void;
+}
+
+export default function Opening({ fortunes, setFortunes, sortFortunes, currentFortune, setCurrentFortune }: OpeningProps) {
+    const fortuneCookie = useRef<HTMLImageElement>(null);
+    const fortuneCookieLeft = useRef<HTMLImageElement>(null);
+    const fortuneCookieRight = useRef<HTMLImageElement>(null);
+    const fortuneText = useRef<HTMLDivElement>(null);
+
+    function createFortune() {
+        const randomNum = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomNum];
+        const matchIndex = fortunes.findIndex((fortune) => {
+            return fortune.quote == randomQuote.quote;
+        });
+        if (matchIndex !== -1) {
+            const updatedFortunes = [...fortunes];
+            updatedFortunes[matchIndex].count++;
+            setFortunes(updatedFortunes);
+            sortFortunes();
+            return;
+        }
+        const newFortune = {
+            id: crypto.randomUUID(),
+            count: 1,
+            quote: randomQuote.quote,
+            author: randomQuote.author    
+        };
+        setCurrentFortune(newFortune);
+        setFortunes((prev) => [...prev, newFortune]);
+        sortFortunes();
+
+
+        fortuneCookie.current!.style.display = "none";
+        fortuneCookieLeft.current!.classList.add("cookie_left_cracking");
+        fortuneCookieRight.current!.classList.add("cookie_right_cracking");
+        fortuneText.current!.classList.add("opening__text--show");
+    }
+
+    function restartOpening() {
+        fortuneText.current!.classList.remove("opening__text--show");
+        setTimeout(() => {
+            fortuneCookie.current!.style.display = "initial";
+            fortuneCookieLeft.current!.classList.remove("cookie_left_cracking");
+            fortuneCookieRight.current!.classList.remove("cookie_right_cracking");
+        }, 1000)
+    }
+
+    return (
+        <div className="opening__wrapper min-h-[70vh]">
+            <div className="opening flex justify-center items-center w-150 h-100 mx-auto relative">
+                <img 
+                    className="w-full max-w-100 cursor-pointer transition-all ease-in-out duration-120 hover:w-120 absolute z-100"
+                    src={cookieImg} 
+                    alt="fortune cookie"
+                    onClick={() => createFortune()}
+                    ref={fortuneCookie}
+                />
+                <img
+                    src={cookieLeftImg} 
+                    alt="" 
+                    className="cookie_left w-full max-w-100 absolute" 
+                    ref={fortuneCookieLeft}
+                />
+                <img 
+                    src={cookieRightImg} 
+                    alt="" 
+                    className="cookie_right w-full max-w-100 absolute"
+                    ref={fortuneCookieRight}
+                />
+                <div
+                    className="opening__text opacity-0 font-[Poppins] text-center text-lg italic transition-all ease-in-out duration-1000"
+                    ref={fortuneText}
+                >
+                    {currentFortune && (
+                        <>
+                            <h2 className="mb-2">
+                                "{currentFortune.quote}"
+                            </h2>
+                            <p className="text-darkGray mb-4">
+                                {currentFortune.author}
+                            </p>
+                            <Button text="Restart" action={restartOpening} />
+                        </>
+                    )}
+                </div>
+            </div>
+        </div>
+    )
+}
