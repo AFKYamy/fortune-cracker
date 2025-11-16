@@ -72,22 +72,25 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
         <div className="opening__wrapper min-h-[70vh]">
             <div className="opening flex justify-center items-center w-150 h-100 mx-auto relative">
                 <img 
-                    className="w-full max-w-100 cursor-pointer transition-all ease-in-out duration-120 hover:w-120 absolute z-100"
+                    className="w-full max-w-100 cursor-pointer select-none transition-all ease-in-out duration-120 hover:w-120 absolute z-100"
                     src={cookieImg} 
                     alt="fortune cookie"
+                    draggable="false"
                     onClick={() => createFortune()}
                     ref={fortuneCookie}
                 />
                 <img
+                    className="cookie_left w-full max-w-100 absolute select-none" 
                     src={cookieLeftImg} 
                     alt="" 
-                    className="cookie_left w-full max-w-100 absolute" 
+                    draggable="false"
                     ref={fortuneCookieLeft}
                 />
                 <img 
+                    className="cookie_right w-full max-w-100 absolute select-none"
                     src={cookieRightImg} 
                     alt="" 
-                    className="cookie_right w-full max-w-100 absolute"
+                    draggable="false"
                     ref={fortuneCookieRight}
                 />
                 <div
