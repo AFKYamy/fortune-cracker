@@ -8,12 +8,14 @@ type Fortune = {
 }
 
 interface HistoryCardProps {
-    fortune: Fortune
+    fortune: Fortune,
+    setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
 }
 
-export default function HistoryCard({ fortune }: HistoryCardProps) {
+export default function HistoryCard({ fortune, setCurrentFortune }: HistoryCardProps) {
     function printFortune() {
         console.log("Quote:", fortune.quote, "Author:", fortune.author);
+        setCurrentFortune(fortune);
     }
     
     return (

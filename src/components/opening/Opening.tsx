@@ -30,6 +30,7 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
     const fortuneText = useRef<HTMLDivElement>(null);
 
     function createFortune() {
+        // eslint-disable-next-line react-hooks/purity
         const randomNum = Math.floor(Math.random() * quotes.length);
         const randomQuote = quotes[randomNum];
         const matchIndex = fortunes.findIndex((fortune) => {
@@ -51,8 +52,10 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
         setCurrentFortune(newFortune);
         setFortunes((prev) => [...prev, newFortune]);
         sortFortunes();
+        hideOpening();
+    }
 
-
+    function hideOpening() {
         fortuneCookie.current!.style.display = "none";
         fortuneCookieLeft.current!.classList.add("cookie_left_cracking");
         fortuneCookieRight.current!.classList.add("cookie_right_cracking");
@@ -69,10 +72,10 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
     }
 
     return (
-        <div className="opening__wrapper min-h-[70vh]">
+        <div className="opening__wrapper min-h-[70vh] flex justify-center items-center">
             <div className="opening flex justify-center items-center w-150 h-100 mx-auto relative">
                 <img 
-                    className="w-full max-w-100 cursor-pointer select-none transition-all ease-in-out duration-120 hover:w-120 absolute z-100"
+                    className="w-full max-w-100 cursor-pointer select-none transition-all ease-in-out duration-120 hover:max-w-120 absolute z-100"
                     src={cookieImg} 
                     alt="fortune cookie"
                     draggable="false"

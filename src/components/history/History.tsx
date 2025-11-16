@@ -9,9 +9,10 @@ type Fortune = {
 
 type HistoryProps = {
     fortunes: Fortune[];
+    setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
 }
 
-export default function History({ fortunes }: HistoryProps) {
+export default function History({ fortunes, setCurrentFortune }: HistoryProps) {
 
 
     return (
@@ -19,7 +20,7 @@ export default function History({ fortunes }: HistoryProps) {
             <h3 className="font-[Poppins] font-bold text-3xl">Fortune history:</h3>
             <div className="history__cards flex flex-wrap justify-center gap-7">
                 {fortunes.map((fortune) => (
-                    <HistoryCard fortune={fortune} key={fortune.id} />
+                    <HistoryCard fortune={fortune} setCurrentFortune={setCurrentFortune} key={fortune.id} />
                 ))}
             </div>
         </div>
