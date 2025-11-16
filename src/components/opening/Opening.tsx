@@ -94,7 +94,7 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
                     ref={fortuneCookieRight}
                 />
                 <div
-                    className="opening__text opacity-0 font-[Poppins] text-center text-lg italic transition-all ease-in-out duration-1000"
+                    className="opening__text opacity-0 font-[Poppins] text-center text-lg italic transition-all ease-in-out duration-1000 z-50"
                     ref={fortuneText}
                 >
                     {currentFortune && (
