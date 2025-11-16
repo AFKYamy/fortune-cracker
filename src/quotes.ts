@@ -939,5 +939,9 @@ export const quotes = [
     {
        "quote": "If you re gonna hit it hit it until it breaks",
        "author": "Tooru Oikawa"
+    },
+    {
+       "quote": "But there's something a little sad about them fireworks, too. They're so flashy, pretty and exciting, but as they fade, you feel sort of lonely.",
+       "author": "Kaizaki Arata"
     }
 ];
