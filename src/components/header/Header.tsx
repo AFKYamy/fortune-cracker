@@ -6,7 +6,7 @@ import pikachuGif from "/images/pikachu-shocked-face-stunned.gif";
 
 export default function Header() {
     return (
-        <div className="header container mx-xl mx-auto flex justify-between items-center py-5">
+        <div className="header container mx-xl mx-auto flex justify-between items-center py-10">
             <div className="header_logo">
                 <Link to="/">
                     <h2 className="font-[Poppins] font-bold text-4xl">

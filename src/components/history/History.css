@@ -4,6 +4,7 @@
 
 .history__card:hover .history__card__count {
     background-color: var(--color-darkGreen);
+    color: white;
 }
 
 .history__card__text,

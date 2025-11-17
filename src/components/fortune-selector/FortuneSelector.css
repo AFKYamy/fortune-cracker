@@ -1,0 +1,4 @@
+.fortune__selector__card--active {
+    background-color: var(--color-gold);
+    color: black;
+}

@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+:root {
+  --gold-glow: 0px 0px 88px 0px rgba(204,189,138,0.21);;
+}
+
 @theme {
   --color-blackMain: #1e1d22;
-  --color-blackSecondary: #242328;
+  --color-blackSecondary: #28272d;
+  --color-lightGray: rgb(180, 180, 180);
   --color-darkGray: #403f45;
   --color-gold: #fdea8f;
   --color-darkGold: #c9ba88;
