@@ -1,0 +1,1 @@
+FortuneCracker is an interactive fortune cookie simulator. Crack open a virtual cookie to receive a fortune or an inspirational quote, and explore the history of your past opened fortunes 
