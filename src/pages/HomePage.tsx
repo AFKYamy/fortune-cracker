@@ -52,9 +52,6 @@ export default function HomePage() {
 
         // finding a match and increasing its count in history
         const matchIndex = fortunes.findIndex((fortune) => {
-            if (fortune.quote === randomQuote.quote) {
-                console.log("MATCH!", fortune.quote, randomQuote.quote);
-            }
             return fortune.quote == randomQuote.quote;
         });
         if (matchIndex !== -1) {
