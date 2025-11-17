@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Header from "../components/header/Header";
+import FortuneSelector from "../components/fortune-selector/FortuneSelector";
 import Opening from "../components/opening/Opening";
 import History from "../components/history/History";
 
@@ -20,21 +21,26 @@ export default function HomePage() {
             author: "Saitama"
         }
     ]);
+    const [selectedMode, setSelectedMode] = useState<string>("fortunes");
     const [currentFortune, setCurrentFortune] = useState<Fortune | null>(null);
 
     function sortFortunes() {
-            setFortunes((prev) => {
-                return prev.sort((a, b) => {
-                    return b.count-a.count;
-                });
-            })
-        }
-    
+        setFortunes((prev) => {
+            return prev.sort((a, b) => {
+                return b.count-a.count;
+            });
+        })
+    }
 
+    function selectMode(mode: string) {
+        setSelectedMode(mode);
+    }
+    
     return (
         <>
             <Header />
-            <Opening fortunes={fortunes} setFortunes={setFortunes} sortFortunes={sortFortunes} currentFortune={currentFortune} setCurrentFortune={setCurrentFortune} />
+            <FortuneSelector selectMode={selectMode} selectedMode={selectedMode} />
+            <Opening fortunes={fortunes} setFortunes={setFortunes} sortFortunes={sortFortunes} currentFortune={currentFortune} setCurrentFortune={setCurrentFortune} selectedMode={selectedMode} />
             <History fortunes={fortunes} setCurrentFortune={setCurrentFortune} />
         </>
     )

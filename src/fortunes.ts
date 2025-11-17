@@ -1,4 +1,4 @@
-export const fortunes = [
+export const fortunesQuotes = [
     {
         "author": "none",
         "quote": "A new wardrobe brings great joy and change to your life."
@@ -109,7 +109,7 @@ export const fortunes = [
     },
     {
         "author": "none",
-        "quote": "Difficulty at the beginning useually means ease at the end."
+        "quote": "Difficulty at the beginning usually means ease at the end."
     },
     {
         "author": "none",

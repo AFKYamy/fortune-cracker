@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import "./Opening.css";
-import { quotes } from "../../quotes";
+import { inspirationalQuotes } from "../../inspirational";
+import { fortunesQuotes } from "../../fortunes";
 
 import Button from "../button/Button";
 
@@ -21,18 +22,29 @@ type OpeningProps = {
     currentFortune: Fortune | null;
     setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
     sortFortunes: () => void;
+    selectedMode: string;
 }
 
-export default function Opening({ fortunes, setFortunes, sortFortunes, currentFortune, setCurrentFortune }: OpeningProps) {
+export default function Opening({ fortunes, setFortunes, sortFortunes, currentFortune, setCurrentFortune, selectedMode }: OpeningProps) {
     const fortuneCookie = useRef<HTMLImageElement>(null);
     const fortuneCookieLeft = useRef<HTMLImageElement>(null);
     const fortuneCookieRight = useRef<HTMLImageElement>(null);
     const fortuneText = useRef<HTMLDivElement>(null);
 
     function createFortune() {
+        let selected;
+        if (selectedMode === "fortunes") {
+            selected = fortunesQuotes;
+        } else if (selectedMode === "inspirational") {
+            selected = inspirationalQuotes;
+        }
+
+        if (!selected) return;
+
         // eslint-disable-next-line react-hooks/purity
-        const randomNum = Math.floor(Math.random() * quotes.length);
-        const randomQuote = quotes[randomNum];
+        const randomNum = Math.floor(Math.random() * selected.length);
+        const randomQuote = selected[randomNum];
+
         const matchIndex = fortunes.findIndex((fortune) => {
             return fortune.quote == randomQuote.quote;
         });
@@ -43,12 +55,14 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
             sortFortunes();
             return;
         }
+
         const newFortune = {
             id: crypto.randomUUID(),
             count: 1,
             quote: randomQuote.quote,
             author: randomQuote.author    
         };
+
         setCurrentFortune(newFortune);
         setFortunes((prev) => [...prev, newFortune]);
         sortFortunes();
@@ -68,7 +82,7 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
             fortuneCookie.current!.style.display = "initial";
             fortuneCookieLeft.current!.classList.remove("cookie_left_cracking");
             fortuneCookieRight.current!.classList.remove("cookie_right_cracking");
-        }, 1000)
+        }, 1000);
     }
 
     return (
@@ -106,7 +120,7 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
                                 "{currentFortune.quote}"
                             </h2>
                             <p className="text-darkGray mb-4">
-                                {currentFortune.author}
+                                {currentFortune.author !== "none" && currentFortune.author}
                             </p>
                             <Button text="Restart" action={restartOpening} />
                         </>
