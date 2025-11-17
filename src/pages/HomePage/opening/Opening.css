@@ -12,62 +12,51 @@
 
 @keyframes crackingLeft {
   0% {
-    top: 0px;
-    left: 0px;
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
   }
   10% {
-    top: -100px;
-    left: -200px;
-    rotate: -30deg;
+    transform: translate(-200px, -100px) rotate(-30deg);
   }
   20% {
-    top: 0px;
-    left: -200px;
-    rotate: -40deg;
+    transform: translate(-200px, 0) rotate(-40deg);
   }
   30% {
-    top: 30px;
-    left: -200px;
+    transform: translate(-200px, 30px) rotate(-40deg);
     opacity: 0;
   }
   40% {
-    top: 40px;
-    left: -200px;
+    transform: translate(-200px, 40px) rotate(-50deg);
     opacity: 0;
-    rotate: -50deg;
   }
   100% {
+    transform: translate(-200px, 40px) rotate(-50deg);
     opacity: 0;
   }
 }
 
+
 @keyframes crackingRight {
   0% {
-    top: 0px;
-    right: 0px;
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
   }
   10% {
-    top: -100px;
-    right: -200px;
-    rotate: 30deg;
+    transform: translate(200px, -100px) rotate(30deg);
   }
   20% {
-    top: 0px;
-    right: -200px;
-    rotate: 40deg;
+    transform: translate(200px, 0) rotate(40deg);
   }
   30% {
-    top: 30px;
-    right: -200px;
+    transform: translate(200px, 30px) rotate(40deg);
     opacity: 0;
   }
   40% {
-    top: 40px;
-    right: -200px;
+    transform: translate(200px, 40px) rotate(50deg);
     opacity: 0;
-    rotate: 50deg;
   }
   100% {
+    transform: translate(200px, 40px) rotate(50deg);
     opacity: 0;
   }
 }
