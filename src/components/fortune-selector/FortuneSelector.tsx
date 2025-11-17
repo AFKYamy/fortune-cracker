@@ -1,4 +1,6 @@
 import type React from "react";
+
+// components
 import FortuneSelectorCard from "./FortuneSelectorCard"
 
 type FortuneSelectorProps = {
@@ -9,8 +11,20 @@ type FortuneSelectorProps = {
 export default function FortuneSelector({ setSelectedMode, selectedMode }: FortuneSelectorProps) {
     return (
         <div className="fortune__selector container mx-xl mx-auto flex gap-7">
-            <FortuneSelectorCard name="Fortunes" authors="No authors" mode="fortunes" setSelectedMode={setSelectedMode} selectedMode={selectedMode} />
-            <FortuneSelectorCard name="Inspirational quotes" authors="Authors" mode="inspirational" setSelectedMode={setSelectedMode} selectedMode={selectedMode} />
+            <FortuneSelectorCard 
+                name="Fortunes" 
+                authors="No authors" 
+                mode="fortunes" 
+                setSelectedMode={setSelectedMode} 
+                selectedMode={selectedMode} 
+            />
+            <FortuneSelectorCard 
+                name="Inspirational quotes" 
+                authors="Authors" 
+                mode="inspirational" 
+                setSelectedMode={setSelectedMode} 
+                selectedMode={selectedMode} 
+            />
         </div>
     )
 }
