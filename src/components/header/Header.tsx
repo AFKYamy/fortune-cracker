@@ -1,7 +1,9 @@
 import { Link } from "react-router";
 
+// components
 import Button from "../button/Button";
 
+// assets
 import pikachuGif from "/images/pikachu-shocked-face-stunned.gif";
 
 export default function Header() {
@@ -15,9 +17,7 @@ export default function Header() {
                     </h2>
                 </Link>
             </div>
-            <div 
-                className="header__actions flex items-center gap-5"
-            >
+            <div className="header__actions flex items-center gap-5">
                 <Button text={"Open"} link={"/"} />
                 <div className="header__user">
                     <img 

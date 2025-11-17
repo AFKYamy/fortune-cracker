@@ -1,18 +1,15 @@
+// components
 import HistoryCard from "./HistoryCard";
 
-type Fortune = {
-    id: string;
-    count: number;
-    quote: string;
-    author: string;
-}
+import type { Fortune } from "../../types/Fortune";
 
 type HistoryProps = {
     fortunes: Fortune[];
     setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
+    hideOpening: () => void;
 }
 
-export default function History({ fortunes, setCurrentFortune }: HistoryProps) {
+export default function History({ fortunes, setCurrentFortune, hideOpening }: HistoryProps) {
 
 
     return (
@@ -20,7 +17,12 @@ export default function History({ fortunes, setCurrentFortune }: HistoryProps) {
             <h3 className="font-[Poppins] font-bold text-3xl">Fortune history:</h3>
             <div className="history__cards flex flex-wrap justify-center gap-7">
                 {fortunes.map((fortune) => (
-                    <HistoryCard fortune={fortune} setCurrentFortune={setCurrentFortune} key={fortune.id} />
+                    <HistoryCard 
+                        key={fortune.id} 
+                        fortune={fortune} 
+                        setCurrentFortune={setCurrentFortune}  
+                        hideOpening={hideOpening} 
+                    />
                 ))}
             </div>
         </div>

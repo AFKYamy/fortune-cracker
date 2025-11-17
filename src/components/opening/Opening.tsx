@@ -1,94 +1,30 @@
-import { useRef } from "react";
 import "./Opening.css";
-import { inspirationalQuotes } from "../../inspirational";
-import { fortunesQuotes } from "../../fortunes";
 
+// components
 import Button from "../button/Button";
 
+// assets
 import cookieImg from "/images/fortune_cookie_glow.png";
 import cookieLeftImg from "/images/fortune_cookie_left.png";
 import cookieRightImg from "/images/fortune_cookie_right.png";
 
-type Fortune = {
-    id: string;
-    count: number;
-    quote: string;
-    author: string;
-}
+import type React from "react";
+import type { Fortune } from "../../types/Fortune";
 
 type OpeningProps = {
-    fortunes: Fortune[];
-    setFortunes: React.Dispatch<React.SetStateAction<Fortune[]>>;
+    restartOpening: () => void;
+    createFortune: () => void;
     currentFortune: Fortune | null;
-    setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
-    sortFortunes: () => void;
-    selectedMode: string;
+    fortuneCookieRefs: {
+        fortuneCookie: React.RefObject<HTMLImageElement | null>;
+        fortuneCookieLeft: React.RefObject<HTMLImageElement | null>;
+        fortuneCookieRight: React.RefObject<HTMLImageElement | null>;
+        fortuneText: React.RefObject<HTMLDivElement | null>;
+    }
 }
 
-export default function Opening({ fortunes, setFortunes, sortFortunes, currentFortune, setCurrentFortune, selectedMode }: OpeningProps) {
-    const fortuneCookie = useRef<HTMLImageElement>(null);
-    const fortuneCookieLeft = useRef<HTMLImageElement>(null);
-    const fortuneCookieRight = useRef<HTMLImageElement>(null);
-    const fortuneText = useRef<HTMLDivElement>(null);
-
-    function createFortune() {
-        let selected;
-        switch (selectedMode) {
-            case "fortunes":
-                selected = fortunesQuotes;
-                break;
-            case "inspirational":
-                selected = inspirationalQuotes;
-                break;
-            default:
-                selected = fortunesQuotes;
-        }
-
-        if (!selected) return;
-
-        // eslint-disable-next-line react-hooks/purity
-        const randomNum = Math.floor(Math.random() * selected.length);
-        const randomQuote = selected[randomNum];
-
-        const matchIndex = fortunes.findIndex((fortune) => {
-            return fortune.quote == randomQuote.quote;
-        });
-        if (matchIndex !== -1) {
-            const updatedFortunes = [...fortunes];
-            updatedFortunes[matchIndex].count++;
-            setFortunes(updatedFortunes);
-            sortFortunes();
-            return;
-        }
-
-        const newFortune = {
-            id: crypto.randomUUID(),
-            count: 1,
-            quote: randomQuote.quote,
-            author: randomQuote.author    
-        };
-
-        setCurrentFortune(newFortune);
-        setFortunes((prev) => [...prev, newFortune]);
-        sortFortunes();
-        hideOpening();
-    }
-
-    function hideOpening() {
-        fortuneCookie.current!.style.display = "none";
-        fortuneCookieLeft.current!.classList.add("cookie_left_cracking");
-        fortuneCookieRight.current!.classList.add("cookie_right_cracking");
-        fortuneText.current!.classList.add("opening__text--show");
-    }
-
-    function restartOpening() {
-        fortuneText.current!.classList.remove("opening__text--show");
-        setTimeout(() => {
-            fortuneCookie.current!.style.display = "initial";
-            fortuneCookieLeft.current!.classList.remove("cookie_left_cracking");
-            fortuneCookieRight.current!.classList.remove("cookie_right_cracking");
-        }, 1000);
-    }
+export default function Opening({ restartOpening, createFortune, currentFortune, fortuneCookieRefs }: OpeningProps) {
+    const { fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText } = fortuneCookieRefs;
 
     return (
         <div className="opening__wrapper min-h-[50vh] flex justify-center items-center">
