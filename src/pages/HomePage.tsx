@@ -31,15 +31,11 @@ export default function HomePage() {
             });
         })
     }
-
-    function selectMode(mode: string) {
-        setSelectedMode(mode);
-    }
     
     return (
         <>
             <Header />
-            <FortuneSelector selectMode={selectMode} selectedMode={selectedMode} />
+            <FortuneSelector setSelectedMode={setSelectedMode} selectedMode={selectedMode} />
             <Opening fortunes={fortunes} setFortunes={setFortunes} sortFortunes={sortFortunes} currentFortune={currentFortune} setCurrentFortune={setCurrentFortune} selectedMode={selectedMode} />
             <History fortunes={fortunes} setCurrentFortune={setCurrentFortune} />
         </>

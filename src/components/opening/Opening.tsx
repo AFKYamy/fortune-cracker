@@ -33,10 +33,15 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
 
     function createFortune() {
         let selected;
-        if (selectedMode === "fortunes") {
-            selected = fortunesQuotes;
-        } else if (selectedMode === "inspirational") {
-            selected = inspirationalQuotes;
+        switch (selectedMode) {
+            case "fortunes":
+                selected = fortunesQuotes;
+                break;
+            case "inspirational":
+                selected = inspirationalQuotes;
+                break;
+            default:
+                selected = fortunesQuotes;
         }
 
         if (!selected) return;
@@ -86,7 +91,7 @@ export default function Opening({ fortunes, setFortunes, sortFortunes, currentFo
     }
 
     return (
-        <div className="opening__wrapper min-h-[70vh] flex justify-center items-center">
+        <div className="opening__wrapper min-h-[50vh] flex justify-center items-center">
             <div className="opening flex justify-center items-center w-150 h-100 mx-auto relative">
                 <img 
                     className="w-full max-w-100 cursor-pointer select-none transition-all ease-in-out duration-120 hover:max-w-120 absolute z-100"
