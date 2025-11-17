@@ -12,42 +12,29 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+import { modes } from "../../../data/modes";
+
 type FortuneSelectorProps = {
     setSelectedMode: React.Dispatch<React.SetStateAction<string>>;
     selectedMode: string;
 }
 
 export default function FortuneSelector({ setSelectedMode, selectedMode }: FortuneSelectorProps) {
-    const modes = [
-        {
-            name: "Fortunes",
-            authors: "👤 No authors",
-            mode: "fortunes"
-        },
-        {
-            name: "Inspirational quotes",
-            authors: "✍️ Authors",
-            mode: "inspirational"
-        }
-    ]
-
     return (
         <div className="fortune__selector__wrapper container max-sm:max-w-[80vw] mx-auto md:mx-xl">
             <div className="fortune__selector hidden flex-col gap-4 md:flex md:gap-7 md:flex-row">
-                <FortuneSelectorCard 
-                    name="Fortunes" 
-                    authors="👤 No authors" 
-                    mode="fortunes" 
-                    setSelectedMode={setSelectedMode} 
-                    selectedMode={selectedMode} 
-                />
-                <FortuneSelectorCard 
-                    name="Inspirational quotes" 
-                    authors="✍️ Authors" 
-                    mode="inspirational" 
-                    setSelectedMode={setSelectedMode} 
-                    selectedMode={selectedMode} 
-                />
+                {modes.map((mode) => {
+                    return (
+                        <FortuneSelectorCard 
+                            name={mode.name}
+                            authors={mode.authors} 
+                            mode={mode.mode}
+                            setSelectedMode={setSelectedMode} 
+                            selectedMode={selectedMode} 
+                            key={crypto.randomUUID()}
+                        />
+                    )
+                })}
             </div>
             <div className="md:hidden">
                 <Select 
@@ -62,7 +49,7 @@ export default function FortuneSelector({ setSelectedMode, selectedMode }: Fortu
                             <SelectLabel>Selected mode</SelectLabel>
                             {modes.map((mode) => {
                                 return (
-                                    <SelectItem value={mode.mode} className="h-auto py-3 flex justify-center focus:bg-gold">
+                                    <SelectItem value={mode.mode} className="h-auto py-3 flex justify-center focus:bg-gold" key={crypto.randomUUID()}>
                                         <div className="flex flex-col justify-center items-center font-[Rajdhani]">
                                             <p className="font-semibold text-lg">{mode.name}</p>
                                             <p className="text-sm">{mode.authors}</p>
