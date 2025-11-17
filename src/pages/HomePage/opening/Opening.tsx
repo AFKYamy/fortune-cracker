@@ -1,7 +1,7 @@
 import "./Opening.css";
 
 // components
-import Button from "../../../components/button/Button";
+import Button from "../../../components/ui/button/Button";
 
 // assets
 import cookieImg from "/images/fortune_cookie_glow.png";
@@ -27,10 +27,10 @@ export default function Opening({ restartOpening, createFortune, currentFortune,
     const { fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText } = fortuneCookieRefs;
 
     return (
-        <div className="opening__wrapper container mx-auto min-h-[50vh] flex justify-center items-center md:mx-lg">
+        <div className="opening__wrapper container mx-auto min-h-[60vh] flex justify-center items-center md:mx-lg">
             <div className="opening flex justify-center items-center mx-auto w-[80%] h-auto relative md:w-150 md:h-100">
                 <img 
-                    className="w-full max-w-80 cursor-pointer select-none transition-all ease-in-out duration-120 absolute z-100 hover:max-w-90 lg:max-w-100 lg:hover:max-w-110"
+                    className="w-full max-w-80 cursor-pointer select-none transition-all ease-in-out duration-120 absolute z-10 hover:max-w-90 lg:max-w-100 lg:hover:max-w-110"
                     src={cookieImg} 
                     alt="fortune cookie"
                     draggable="false"
@@ -52,7 +52,7 @@ export default function Opening({ restartOpening, createFortune, currentFortune,
                     ref={fortuneCookieRight}
                 />
                 <div
-                    className="opening__text opacity-0 font-[Poppins] text-center text-md italic transition-all ease-in-out duration-1000 z-50 md:text-lg"
+                    className="opening__text opacity-0 font-[Poppins] text-center text-md italic transition-all ease-in-out duration-1000 z-5 md:text-lg"
                     ref={fortuneText}
                 >
                     {currentFortune && (

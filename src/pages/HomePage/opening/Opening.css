@@ -3,11 +3,11 @@
 }
 
 .cookie_left_cracking {
-    animation: crackingLeft 2s ease-out forwards;
+    animation: crackingLeft 5s ease-out forwards;
 }
 
 .cookie_right_cracking {
-    animation: crackingRight 2s ease-out forwards;
+    animation: crackingRight 5s ease-out forwards;
 }
 
 @keyframes crackingLeft {
@@ -28,7 +28,7 @@
   30% {
     top: 30px;
     left: -200px;
-    opacity: 0.3;
+    opacity: 0;
   }
   40% {
     top: 40px;
@@ -37,8 +37,6 @@
     rotate: -50deg;
   }
   100% {
-    top: 40px;
-    left: -200px;
     opacity: 0;
   }
 }
@@ -61,7 +59,7 @@
   30% {
     top: 30px;
     right: -200px;
-    opacity: 0.3;
+    opacity: 0;
   }
   40% {
     top: 40px;
@@ -70,8 +68,6 @@
     rotate: 50deg;
   }
   100% {
-    top: 40px;
-    right: -200px;
     opacity: 0;
   }
 }
