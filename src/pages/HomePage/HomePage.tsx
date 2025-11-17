@@ -1,16 +1,17 @@
 import { useState, useRef } from "react";
 
 // components
-import Header from "../components/header/Header";
-import FortuneSelector from "../components/fortune-selector/FortuneSelector";
-import Opening from "../components/opening/Opening";
-import History from "../components/history/History";
+import Header from "../../components/header/Header";
+import FortuneSelector from "./fortune-selector/FortuneSelector";
+import Opening from "./opening/Opening";
+import History from "./history/History";
+import Footer from "../../components/footer/Footer";
 
 // quotes arrays
-import { inspirationalQuotes } from "../inspirational";
-import { fortunesQuotes } from "../fortunes";
+import { inspirationalQuotes } from "../../data/inspirational";
+import { fortunesQuotes } from "../../data/fortunes";
 
-import type { Fortune } from "../types/Fortune";
+import type { Fortune } from "../../types/Fortune";
 
 export default function HomePage() {
     const [fortunes, setFortunes] = useState<Fortune[]>([
@@ -23,6 +24,7 @@ export default function HomePage() {
     ]);
     const [selectedMode, setSelectedMode] = useState<string>("fortunes");
     const [currentFortune, setCurrentFortune] = useState<Fortune | null>(null);
+    const [openedFortunes, setOpenedFortunes] = useState<number>(0);
 
     const fortuneCookie = useRef<HTMLImageElement>(null);
     const fortuneCookieLeft = useRef<HTMLImageElement>(null);
@@ -61,6 +63,7 @@ export default function HomePage() {
             setCurrentFortune(updatedFortunes[matchIndex]);
             sortFortunes();
             hideOpening();
+            setOpenedFortunes(prev => prev += 1);
             return;
         }
 
@@ -74,6 +77,7 @@ export default function HomePage() {
         setFortunes((prev) => [...prev, newFortune]);
         sortFortunes();
         hideOpening();
+        setOpenedFortunes(prev => prev += 1);
     }
 
     function hideOpening() {
@@ -93,11 +97,7 @@ export default function HomePage() {
     }
 
     function sortFortunes() {
-        setFortunes((prev) => {
-            return prev.sort((a, b) => {
-                return b.count-a.count;
-            });
-        })
+        setFortunes((prev) => prev.sort((a, b) => b.count-a.count));
     }
     
     return (
@@ -110,7 +110,13 @@ export default function HomePage() {
                 currentFortune={currentFortune} 
                 fortuneCookieRefs={fortuneCookieRefs}
             />
-            <History fortunes={fortunes} setCurrentFortune={setCurrentFortune} hideOpening={hideOpening} />
+            <History 
+                fortunes={fortunes} 
+                openedFortunes={openedFortunes} 
+                setCurrentFortune={setCurrentFortune} 
+                hideOpening={hideOpening} 
+            />
+            <Footer />
         </>
     )
 }
