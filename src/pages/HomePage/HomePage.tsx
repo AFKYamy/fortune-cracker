@@ -14,14 +14,7 @@ import { fortunesQuotes } from "../../data/fortunes";
 import type { Fortune } from "../../types/Fortune";
 
 export default function HomePage() {
-    const [fortunes, setFortunes] = useState<Fortune[]>([
-        {
-            id: crypto.randomUUID(),
-            count: 1,
-            quote: "I’ll leave tomorrow’s problems to tomorrow’s me.",
-            author: "Saitama"
-        }
-    ]);
+    const [fortunes, setFortunes] = useState<Fortune[]>([]);
     const [selectedMode, setSelectedMode] = useState<string>("fortunes");
     const [currentFortune, setCurrentFortune] = useState<Fortune | null>(null);
     const [openedFortunes, setOpenedFortunes] = useState<number>(0);
