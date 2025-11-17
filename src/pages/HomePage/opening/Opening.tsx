@@ -1,7 +1,7 @@
 import "./Opening.css";
 
 // components
-import Button from "../button/Button";
+import Button from "../../../components/button/Button";
 
 // assets
 import cookieImg from "/images/fortune_cookie_glow.png";
@@ -9,7 +9,7 @@ import cookieLeftImg from "/images/fortune_cookie_left.png";
 import cookieRightImg from "/images/fortune_cookie_right.png";
 
 import type React from "react";
-import type { Fortune } from "../../types/Fortune";
+import type { Fortune } from "../../../types/Fortune";
 
 type OpeningProps = {
     restartOpening: () => void;
