@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 // components
-import Button from "../button/Button";
+import Button from "../ui/button/Button";
 
 // assets
 import pikachuGif from "/images/pikachu-shocked-face-stunned.gif";
