@@ -10,7 +10,7 @@ type FortuneSelectorProps = {
 
 export default function FortuneSelector({ setSelectedMode, selectedMode }: FortuneSelectorProps) {
     return (
-        <div className="fortune__selector container mx-xl mx-auto flex gap-7">
+        <div className="fortune__selector container max-sm:max-w-[80vw] mx-auto flex flex-col gap-4 md:gap-7 md:flex-row md:mx-xl">
             <FortuneSelectorCard 
                 name="Fortunes" 
                 authors="No authors" 

@@ -21,7 +21,7 @@ export default function FortuneSelectorCard({ name, authors, mode, setSelectedMo
 
     return (
         <div
-            className="fortune__selector__card flex flex-col justify-center items-center px-10 py-5 rounded-[25px] min-w-[230px] bg-blackSecondary font-[Rajdhani] shadow-lg cursor-pointer hover:shadow-(--gold-glow) hover:bg-darkGold hover:text-neutral-950 transition-all ease-in-out duration-200"
+            className="fortune__selector__card flex flex-col justify-center items-center px-5 py-3 rounded-[20px] bg-blackSecondary font-[Rajdhani] shadow-lg cursor-pointer hover:shadow-(--gold-glow) hover:bg-darkGold hover:text-neutral-950 transition-all ease-in-out duration-200 md:px-10 md:py-5 md:rounded-[25px] md:min-w-[230px]"
             data-mode={mode}
             onClick={() => setSelectedMode(mode)}    
             ref={fortuneSelectorCard}

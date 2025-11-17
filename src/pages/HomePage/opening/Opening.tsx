@@ -27,10 +27,10 @@ export default function Opening({ restartOpening, createFortune, currentFortune,
     const { fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText } = fortuneCookieRefs;
 
     return (
-        <div className="opening__wrapper min-h-[50vh] flex justify-center items-center">
-            <div className="opening flex justify-center items-center w-150 h-100 mx-auto relative">
+        <div className="opening__wrapper container mx-auto min-h-[50vh] flex justify-center items-center md:mx-lg">
+            <div className="opening flex justify-center items-center mx-auto w-[80%] h-auto relative md:w-150 md:h-100">
                 <img 
-                    className="w-full max-w-100 cursor-pointer select-none transition-all ease-in-out duration-120 hover:max-w-120 absolute z-100"
+                    className="w-full max-w-80 cursor-pointer select-none transition-all ease-in-out duration-120 absolute z-100 hover:max-w-90 lg:max-w-100 lg:hover:max-w-110"
                     src={cookieImg} 
                     alt="fortune cookie"
                     draggable="false"
@@ -38,21 +38,21 @@ export default function Opening({ restartOpening, createFortune, currentFortune,
                     ref={fortuneCookie}
                 />
                 <img
-                    className="cookie_left w-full max-w-100 absolute select-none" 
+                    className="cookie_left w-full max-w-80 absolute select-none lg:max-w-100" 
                     src={cookieLeftImg} 
                     alt="" 
                     draggable="false"
                     ref={fortuneCookieLeft}
                 />
                 <img 
-                    className="cookie_right w-full max-w-100 absolute select-none"
+                    className="cookie_right w-full max-w-80 absolute select-none lg:max-w-100"
                     src={cookieRightImg} 
                     alt="" 
                     draggable="false"
                     ref={fortuneCookieRight}
                 />
                 <div
-                    className="opening__text opacity-0 font-[Poppins] text-center text-lg italic transition-all ease-in-out duration-1000 z-50"
+                    className="opening__text opacity-0 font-[Poppins] text-center text-md italic transition-all ease-in-out duration-1000 z-50 md:text-lg"
                     ref={fortuneText}
                 >
                     {currentFortune && (
@@ -60,7 +60,7 @@ export default function Opening({ restartOpening, createFortune, currentFortune,
                             <h2 className="mb-2">
                                 "{currentFortune.quote}"
                             </h2>
-                            <p className="text-darkGray mb-4">
+                            <p className="text-darkGray mb-7">
                                 {currentFortune.author !== "none" && currentFortune.author}
                             </p>
                             <Button text="Restart" action={restartOpening} />
