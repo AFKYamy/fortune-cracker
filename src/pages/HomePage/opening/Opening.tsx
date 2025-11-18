@@ -27,7 +27,7 @@ export default function Opening({ restartOpening, createFortune, currentFortune,
     const { fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText } = fortuneCookieRefs;
 
     return (
-        <div className="opening__wrapper container mx-auto min-h-[60vh] flex justify-center items-center md:mx-lg">
+        <div className="opening__wrapper container mx-auto flex justify-center items-center min-h-[60vh] md:mx-lg">
             <div className="opening flex justify-center items-center mx-auto w-[80%] h-auto relative md:w-150 md:h-100">
                 <img 
                     className="w-full max-w-80 cursor-pointer select-none transition-all ease-in-out duration-120 absolute z-10 hover:max-w-90 lg:max-w-100 lg:hover:max-w-110"

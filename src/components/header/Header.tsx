@@ -21,9 +21,9 @@ export default function Header() {
                 <Button text={"Open"} link={"/"} />
                 <div className="header__user">
                     <img 
+                        className="w-10 h-10 rounded-full"
                         src={pikachuGif} 
                         alt="user profile picture"
-                        className="w-10 h-10 rounded-full"
                     />
                 </div>
             </div>

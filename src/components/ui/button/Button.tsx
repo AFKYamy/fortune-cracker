@@ -10,7 +10,7 @@ export default function Button({ text, link, action }: Button) {
     return (
         link ? (
             <Link
-                className="btn font-semibold bg-gold text-neutral-950 py-[0.65rem] px-6 rounded-[25px] hover:bg-darkGold transition-all duration-200 ease-in-out"
+                className="btn font-semibold bg-gold text-neutral-950 py-[0.65rem] px-6 rounded-[25px] transition-all duration-200 ease-in-out hover:bg-darkGold"
                 to={link}
                 title={text + " link"}
             >
@@ -18,7 +18,7 @@ export default function Button({ text, link, action }: Button) {
             </Link>
         ) : (
             <button
-                className="btn font-semibold bg-gold text-neutral-950 py-[0.65rem] px-6 rounded-[25px] hover:bg-darkGold transition-all duration-200 ease-in-out"
+                className="btn font-semibold bg-gold text-neutral-950 py-[0.65rem] px-6 rounded-[25px] transition-all duration-200 ease-in-out hover:bg-darkGold"
                 title={text + " link"}
                 onClick={action}
             >

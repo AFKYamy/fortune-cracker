@@ -5,11 +5,11 @@ type FortuneSelectorCardProps = {
     name: string;
     authors: string;
     mode: string;
-    setSelectedMode: React.Dispatch<React.SetStateAction<string>>;
     selectedMode: string;
+    setSelectedMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function FortuneSelectorCard({ name, authors, mode, setSelectedMode, selectedMode }: FortuneSelectorCardProps) {
+export default function FortuneSelectorCard({ name, authors, mode, selectedMode, setSelectedMode }: FortuneSelectorCardProps) {
     const fortuneSelectorCard = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (selectedMode === mode) {
@@ -21,7 +21,7 @@ export default function FortuneSelectorCard({ name, authors, mode, setSelectedMo
 
     return (
         <div
-            className="fortune__selector__card flex flex-col justify-center items-center px-5 py-3 rounded-[20px] bg-blackSecondary font-[Rajdhani] shadow-lg cursor-pointer hover:shadow-(--gold-glow) hover:bg-darkGold hover:text-neutral-950 transition-all ease-in-out duration-200 md:px-10 md:py-5 md:rounded-[25px] md:min-w-[230px]"
+            className="fortune__selector__card flex flex-col justify-center items-center px-5 py-3 rounded-[20px] bg-blackSecondary font-[Rajdhani] shadow-lg cursor-pointer transition-all ease-in-out duration-200 hover:shadow-(--gold-glow) hover:bg-darkGold hover:text-neutral-950 md:px-10 md:py-5 md:rounded-[25px] md:min-w-[230px]"
             data-mode={mode}
             onClick={() => setSelectedMode(mode)}    
             ref={fortuneSelectorCard}
