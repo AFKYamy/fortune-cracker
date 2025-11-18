@@ -2,11 +2,11 @@
     opacity: 1;
 }
 
-.cookie_left_cracking {
+.cookie_left--cracking {
     animation: crackingLeft 5s ease-out forwards;
 }
 
-.cookie_right_cracking {
+.cookie_right--cracking {
     animation: crackingRight 5s ease-out forwards;
 }
 
