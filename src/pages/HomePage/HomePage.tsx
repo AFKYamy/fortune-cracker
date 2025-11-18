@@ -87,7 +87,7 @@ export default function HomePage() {
                 fortunes={fortunes} 
                 openedFortunes={openedFortunes} 
                 setCurrentFortune={setCurrentFortune} 
-                triggerOpeningAnimation={triggerOpeningAnimation} 
+                setIsCracked={setIsCracked} 
             />
             <Footer />
         </>
