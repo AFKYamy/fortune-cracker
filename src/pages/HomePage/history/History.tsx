@@ -7,10 +7,10 @@ type HistoryProps = {
     fortunes: Fortune[];
     openedFortunes: number;
     setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
-    hideOpening: () => void;
+    triggerOpeningAnimation: VoidFunction;
 }
 
-export default function History({ fortunes, openedFortunes, setCurrentFortune, hideOpening }: HistoryProps) {
+export default function History({ fortunes, openedFortunes, setCurrentFortune, triggerOpeningAnimation }: HistoryProps) {
     return (
         <div className="history container mx-xl mx-auto flex flex-col gap-8 pb-30 max-sm:max-w-[80vw]">
             <p className="font-[rajdhani] text-lg">
@@ -25,7 +25,7 @@ export default function History({ fortunes, openedFortunes, setCurrentFortune, h
                         key={fortune.id} 
                         fortune={fortune} 
                         setCurrentFortune={setCurrentFortune}  
-                        hideOpening={hideOpening} 
+                        triggerOpeningAnimation={triggerOpeningAnimation} 
                     />
                 ))}
             </div>

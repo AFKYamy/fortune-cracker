@@ -7,9 +7,13 @@ import Opening from "./opening/Opening";
 import History from "./history/History";
 import Footer from "@/components/footer/Footer";
 
-// quotes arrays
-import { inspirationalQuotes } from "@/data/inspirational";
-import { fortunesQuotes } from "@/data/fortunes";
+// logic
+import {
+  getRandomQuote,
+  sortFortunes,
+  findMatchingFortuneIndex,
+  createNewFortune
+} from "@/lib/fortune";
 
 import type { Fortune } from "@/types/Fortune";
 
@@ -20,6 +24,7 @@ export default function HomePage() {
     const [openedFortunes, setOpenedFortunes] = useState<number>(0);
     const [isCracked, setIsCracked] = useState(false);
 
+    // refs for animations
     const fortuneCookie = useRef<HTMLImageElement>(null);
     const fortuneCookieLeft = useRef<HTMLImageElement>(null);
     const fortuneCookieRight = useRef<HTMLImageElement>(null);
@@ -27,55 +32,37 @@ export default function HomePage() {
     const fortuneCookieRefs = { fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText };
 
     function createFortune() {
-        // random quote based on user's selected mode
-        let selected;
-        switch (selectedMode) {
-            case "fortunes":
-                selected = fortunesQuotes;
-                break;
-            case "inspirational":
-                selected = inspirationalQuotes;
-                break;
-            default:
-                selected = fortunesQuotes;
-        }
+        const randomQuote = getRandomQuote(selectedMode);
+        if (!randomQuote) return;
 
-        if (!selected) return;
-
-        // eslint-disable-next-line react-hooks/purity
-        const randomNum = Math.floor(Math.random() * selected.length);
-        const randomQuote = selected[randomNum];
-
-        // finding a match and increasing its count in history
-        const matchIndex = fortunes.findIndex((fortune) => {
-            return fortune.quote == randomQuote.quote;
-        });
+        // finding match and increasing count
+        const matchIndex = findMatchingFortuneIndex(fortunes, randomQuote.quote);
         if (matchIndex !== -1) {
             const updatedFortunes = [...fortunes];
             updatedFortunes[matchIndex].count++;
-            setFortunes(updatedFortunes);
-            setCurrentFortune(updatedFortunes[matchIndex]);
-            sortFortunes();
-            hideOpening();
-            setOpenedFortunes(prev => prev += 1);
+
+            const sortedFortunes = sortFortunes(updatedFortunes);
+            setFortunes(sortedFortunes);
+            setCurrentFortune(sortedFortunes[matchIndex]);
+            triggerOpeningAnimation();
             return;
         }
 
-        const newFortune = {
-            id: crypto.randomUUID(),
-            count: 1,
-            quote: randomQuote.quote,
-            author: randomQuote.author    
-        };
+        // no match create new fortune
+        const newFortune = createNewFortune(randomQuote);
+        const updatedFortunes = [...fortunes, newFortune];
+
+        const sortedFortunes = sortFortunes(updatedFortunes);
+
+        setFortunes(sortedFortunes);
         setCurrentFortune(newFortune);
-        setFortunes((prev) => [...prev, newFortune]);
-        sortFortunes();
-        hideOpening();
-        setOpenedFortunes(prev => prev += 1);
+
+        triggerOpeningAnimation();
     }
 
-    function hideOpening() {
+    function triggerOpeningAnimation() {
         setIsCracked(true);
+        setOpenedFortunes(prev => prev + 1);
     }
 
     function restartOpening() {
@@ -84,27 +71,23 @@ export default function HomePage() {
             setIsCracked(false)
         }, 1000);
     }
-
-    function sortFortunes() {
-        setFortunes((prev) => prev.sort((a, b) => b.count-a.count));
-    }
     
     return (
         <>
             <Header />
-            <FortuneSelector setSelectedMode={setSelectedMode} selectedMode={selectedMode} />
-            <Opening 
-                restartOpening={restartOpening} 
-                createFortune={createFortune} 
+            <FortuneSelector selectedMode={selectedMode} setSelectedMode={setSelectedMode} />
+            <Opening  
                 currentFortune={currentFortune} 
                 fortuneCookieRefs={fortuneCookieRefs}
                 isCracked={isCracked}
+                restartOpening={restartOpening} 
+                createFortune={createFortune}
             />
             <History 
                 fortunes={fortunes} 
                 openedFortunes={openedFortunes} 
                 setCurrentFortune={setCurrentFortune} 
-                hideOpening={hideOpening} 
+                triggerOpeningAnimation={triggerOpeningAnimation} 
             />
             <Footer />
         </>

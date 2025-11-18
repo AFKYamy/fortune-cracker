@@ -4,3 +4,8 @@ export type Fortune = {
     quote: string;
     author: string;
 }
+
+export type FortuneQuote = {
+    quote: string;
+    author: string;
+}

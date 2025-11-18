@@ -44,7 +44,7 @@ export default function Opening({ createFortune, restartOpening, currentFortune,
                 <img
                     className={`
                         cookie_left w-full max-w-80 absolute select-none lg:max-w-100
-                        ${isCracked ? "cookie_left_cracking" : ""}    
+                        ${isCracked ? "cookie_left--cracking" : ""}    
                     `}
                     src={cookieLeftImg} 
                     alt="" 
@@ -54,7 +54,7 @@ export default function Opening({ createFortune, restartOpening, currentFortune,
                 <img 
                     className={`
                         cookie_right w-full max-w-80 absolute select-none lg:max-w-100
-                        ${isCracked ? "cookie_right_cracking" : ""}    
+                        ${isCracked ? "cookie_right--cracking" : ""}    
                     `}
                     src={cookieRightImg} 
                     alt="" 
