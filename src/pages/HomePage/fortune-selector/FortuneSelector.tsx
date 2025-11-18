@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select"
 
 // selectable modes
-import { modes } from "../../../data/modes";
+import { modes } from "@/data/modes";
 
 type FortuneSelectorProps = {
     setSelectedMode: React.Dispatch<React.SetStateAction<string>>;
