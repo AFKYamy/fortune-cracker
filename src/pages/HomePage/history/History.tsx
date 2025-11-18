@@ -1,7 +1,7 @@
 // components
 import HistoryCard from "./HistoryCard";
 
-import type { Fortune } from "../../../types/Fortune";
+import type { Fortune } from "@/types/Fortune";
 
 type HistoryProps = {
     fortunes: Fortune[];

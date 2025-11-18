@@ -1,6 +1,6 @@
 import "./History.css";
 
-import type { Fortune } from "../../../types/Fortune";
+import type { Fortune } from "@/types/Fortune";
 
 type HistoryCardProps = {
     fortune: Fortune,

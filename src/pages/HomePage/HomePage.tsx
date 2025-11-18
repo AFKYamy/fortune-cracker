@@ -1,23 +1,24 @@
 import { useState, useRef } from "react";
 
 // components
-import Header from "../../components/header/Header";
+import Header from "@/components/header/Header";
 import FortuneSelector from "./fortune-selector/FortuneSelector";
 import Opening from "./opening/Opening";
 import History from "./history/History";
-import Footer from "../../components/footer/Footer";
+import Footer from "@/components/footer/Footer";
 
 // quotes arrays
-import { inspirationalQuotes } from "../../data/inspirational";
-import { fortunesQuotes } from "../../data/fortunes";
+import { inspirationalQuotes } from "@/data/inspirational";
+import { fortunesQuotes } from "@/data/fortunes";
 
-import type { Fortune } from "../../types/Fortune";
+import type { Fortune } from "@/types/Fortune";
 
 export default function HomePage() {
     const [fortunes, setFortunes] = useState<Fortune[]>([]);
     const [selectedMode, setSelectedMode] = useState<string>("fortunes");
     const [currentFortune, setCurrentFortune] = useState<Fortune | null>(null);
     const [openedFortunes, setOpenedFortunes] = useState<number>(0);
+    const [isCracked, setIsCracked] = useState(false);
 
     const fortuneCookie = useRef<HTMLImageElement>(null);
     const fortuneCookieLeft = useRef<HTMLImageElement>(null);
@@ -74,18 +75,13 @@ export default function HomePage() {
     }
 
     function hideOpening() {
-        fortuneCookie.current!.style.display = "none";
-        fortuneCookieLeft.current!.classList.add("cookie_left_cracking");
-        fortuneCookieRight.current!.classList.add("cookie_right_cracking");
-        fortuneText.current!.classList.add("opening__text--show");
+        setIsCracked(true);
     }
 
     function restartOpening() {
         fortuneText.current!.classList.remove("opening__text--show");
         setTimeout(() => {
-            fortuneCookie.current!.style.display = "initial";
-            fortuneCookieLeft.current!.classList.remove("cookie_left_cracking");
-            fortuneCookieRight.current!.classList.remove("cookie_right_cracking");
+            setIsCracked(false)
         }, 1000);
     }
 
@@ -102,6 +98,7 @@ export default function HomePage() {
                 createFortune={createFortune} 
                 currentFortune={currentFortune} 
                 fortuneCookieRefs={fortuneCookieRefs}
+                isCracked={isCracked}
             />
             <History 
                 fortunes={fortunes} 
