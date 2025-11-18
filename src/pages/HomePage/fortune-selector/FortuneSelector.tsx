@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+// selectable modes
 import { modes } from "../../../data/modes";
 
 type FortuneSelectorProps = {
@@ -35,7 +36,7 @@ export default function FortuneSelector({ setSelectedMode, selectedMode }: Fortu
                         />
                     )
                 })}
-            </div>
+            </div>  
             <div className="md:hidden">
                 <Select 
                     value={selectedMode}
@@ -49,7 +50,11 @@ export default function FortuneSelector({ setSelectedMode, selectedMode }: Fortu
                             <SelectLabel>Selected mode</SelectLabel>
                             {modes.map((mode) => {
                                 return (
-                                    <SelectItem value={mode.mode} className="h-auto py-3 flex justify-center focus:bg-gold" key={crypto.randomUUID()}>
+                                    <SelectItem 
+                                        className="h-auto py-3 flex justify-center focus:bg-gold"    
+                                        value={mode.mode} 
+                                        key={crypto.randomUUID()}
+                                    >
                                         <div className="flex flex-col justify-center items-center font-[Rajdhani]">
                                             <p className="font-semibold text-lg">{mode.name}</p>
                                             <p className="text-sm">{mode.authors}</p>

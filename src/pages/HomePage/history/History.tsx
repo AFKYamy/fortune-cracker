@@ -11,8 +11,6 @@ type HistoryProps = {
 }
 
 export default function History({ fortunes, openedFortunes, setCurrentFortune, hideOpening }: HistoryProps) {
-
-
     return (
         <div className="history container mx-xl mx-auto flex flex-col gap-8 pb-30 max-sm:max-w-[80vw]">
             <p className="font-[rajdhani] text-lg">
