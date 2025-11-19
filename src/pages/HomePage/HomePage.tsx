@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 
 // components
 import Header from "@/components/header/Header";
@@ -29,7 +29,7 @@ export default function HomePage() {
     const fortuneCookieLeft = useRef<HTMLImageElement>(null);
     const fortuneCookieRight = useRef<HTMLImageElement>(null);
     const fortuneText = useRef<HTMLDivElement>(null);
-    const fortuneCookieRefs = { fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText };
+    const fortuneCookieRefs = useMemo(() => ({ fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText }), []);
 
     function createFortune() {
         const randomQuote = getRandomQuote(selectedMode);
