@@ -1,16 +1,12 @@
 // components
 import HistoryCard from "./HistoryCard";
 
-import type { Fortune } from "@/types/Fortune";
+// contexts
+import { useFortunesContext } from "@/contexts/FortunesContext";
 
-type HistoryProps = {
-    fortunes: Fortune[];
-    openedFortunes: number;
-    setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
-    setIsCracked: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export default function History() {
+    const { fortunes, openedFortunes } = useFortunesContext();
 
-export default function History({ fortunes, openedFortunes, setCurrentFortune, setIsCracked }: HistoryProps) {
     return (
         <div className="history container mx-xl mx-auto flex flex-col gap-8 pb-30 max-sm:max-w-[80vw]">
             <p className="font-[rajdhani] text-lg">
@@ -23,9 +19,7 @@ export default function History({ fortunes, openedFortunes, setCurrentFortune, s
                 {fortunes.map((fortune) => (
                     <HistoryCard 
                         key={fortune.id} 
-                        fortune={fortune} 
-                        setCurrentFortune={setCurrentFortune}  
-                        setIsCracked={setIsCracked} 
+                        fortune={fortune}
                     />
                 ))}
             </div>

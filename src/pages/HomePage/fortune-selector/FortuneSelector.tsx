@@ -1,5 +1,3 @@
-import type React from "react";
-
 // components
 import FortuneSelectorCard from "./FortuneSelectorCard"
 import {
@@ -12,15 +10,15 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+// contexts
+import { useFortunesContext } from "@/contexts/FortunesContext";
+
 // selectable modes
 import { modes } from "@/data/modes";
 
-type FortuneSelectorProps = {
-    setSelectedMode: React.Dispatch<React.SetStateAction<string>>;
-    selectedMode: string;
-}
-
-export default function FortuneSelector({ setSelectedMode, selectedMode }: FortuneSelectorProps) {
+export default function FortuneSelector() {
+    const { selectedMode, setSelectedMode } = useFortunesContext();
+    
     return (
         <div className="fortune__selector__wrapper container max-sm:max-w-[80vw] mx-auto md:mx-xl">
             <div className="fortune__selector hidden flex-col gap-4 md:flex md:gap-7 md:flex-row">
@@ -30,8 +28,6 @@ export default function FortuneSelector({ setSelectedMode, selectedMode }: Fortu
                             name={mode.name}
                             authors={mode.authors} 
                             mode={mode.mode}
-                            setSelectedMode={setSelectedMode} 
-                            selectedMode={selectedMode} 
                             key={crypto.randomUUID()}
                         />
                     )
