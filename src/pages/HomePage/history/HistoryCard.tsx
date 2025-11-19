@@ -1,15 +1,17 @@
-import type React from "react";
 import "./History.css";
+
+// contexts
+import { useFortunesContext } from "@/contexts/FortunesContext";
 
 import type { Fortune } from "@/types/Fortune";
 
 type HistoryCardProps = {
-    fortune: Fortune,
-    setCurrentFortune: React.Dispatch<React.SetStateAction<Fortune | null>>;
-    setIsCracked: React.Dispatch<React.SetStateAction<boolean>>;
+    fortune: Fortune;
 }
 
-export default function HistoryCard({ fortune, setCurrentFortune, setIsCracked }: HistoryCardProps) {
+export default function HistoryCard({ fortune }: HistoryCardProps) {
+    const { setCurrentFortune, setIsCracked } = useFortunesContext();
+
     return (
         <div 
             className="history__card relative flex justify-center items-center bg-blackSecondary w-full h-17 max-h-17 rounded-[20px] shadow-lg cursor-pointer transition-all duration-200 ease-in-out hover:bg-darkGold sm:w-40 sm:max-w-40"

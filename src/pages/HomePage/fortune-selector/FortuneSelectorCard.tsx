@@ -1,16 +1,19 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./FortuneSelector.css";
+
+// contexts
+import { useFortunesContext } from "@/contexts/FortunesContext";
 
 type FortuneSelectorCardProps = {
     name: string;
     authors: string;
     mode: string;
-    selectedMode: string;
-    setSelectedMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function FortuneSelectorCard({ name, authors, mode, selectedMode, setSelectedMode }: FortuneSelectorCardProps) {
+export default function FortuneSelectorCard({ name, authors, mode }: FortuneSelectorCardProps) {
     const fortuneSelectorCard = useRef<HTMLDivElement>(null);
+    const { selectedMode, setSelectedMode } = useFortunesContext();
+    
     useEffect(() => {
         if (selectedMode === mode) {
             fortuneSelectorCard.current!.classList.add("fortune__selector__card--active");

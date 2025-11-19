@@ -3,29 +3,25 @@ import "./Opening.css";
 // components
 import Button from "@/components/ui/button/Button";
 
+// hooks
+import useFortunesRefs from "@/hooks/useFortunesRefs";
+
+// contexts
+import { useFortunesContext } from "@/contexts/FortunesContext";
+
 // assets
 import cookieImg from "/images/fortune_cookie_glow.png";
 import cookieLeftImg from "/images/fortune_cookie_left.png";
 import cookieRightImg from "/images/fortune_cookie_right.png";
 
-import type React from "react";
-import type { Fortune } from "@/types/Fortune";
+export default function Opening() {
+    const { fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText } = useFortunesRefs();
+    const { createFortune, currentFortune, isCracked, setIsCracked } = useFortunesContext();
 
-type OpeningProps = {
-    createFortune: VoidFunction;
-    restartOpening: VoidFunction;
-    currentFortune: Fortune | null;
-    fortuneCookieRefs: {
-        fortuneCookie: React.RefObject<HTMLImageElement | null>;
-        fortuneCookieLeft: React.RefObject<HTMLImageElement | null>;
-        fortuneCookieRight: React.RefObject<HTMLImageElement | null>;
-        fortuneText: React.RefObject<HTMLDivElement | null>;
-    };
-    isCracked: boolean;
-}
-
-export default function Opening({ createFortune, restartOpening, currentFortune, fortuneCookieRefs, isCracked }: OpeningProps) {
-    const { fortuneCookie, fortuneCookieLeft, fortuneCookieRight, fortuneText } = fortuneCookieRefs;
+    function restartOpening() {
+        fortuneText.current?.classList.remove("opening__text--show");
+        setTimeout(() => setIsCracked(false), 1000);
+    }
 
     return (
         <div className="opening__wrapper container mx-auto flex justify-center items-center min-h-[60vh] md:mx-lg">
