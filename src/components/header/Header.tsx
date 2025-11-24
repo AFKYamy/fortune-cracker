@@ -3,9 +3,6 @@ import { Link } from "react-router";
 // components
 import Button from "../ui/button/Button";
 
-// assets
-import pikachuGif from "/images/pikachu-shocked-face-stunned.gif";
-
 export default function Header() {
     return (
         <div className="header container mx-xl mx-auto flex justify-between items-center py-10 max-sm:max-w-[80vw]">
@@ -19,13 +16,6 @@ export default function Header() {
             </div>
             <div className="header__actions flex items-center gap-5 hidden sm:flex">
                 <Button text={"Open"} link={"/"} />
-                <div className="header__user">
-                    <img 
-                        className="w-10 h-10 rounded-full"
-                        src={pikachuGif} 
-                        alt="user profile picture"
-                    />
-                </div>
             </div>
         </div>
     )
